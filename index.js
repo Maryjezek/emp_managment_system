@@ -103,7 +103,7 @@ const promptUser = () => {
             .prompt([
             {
               type: "input",
-              name: "role_title",
+              name: "role",
               message: "Enter the new role title? (Required)",
             },
             {
@@ -118,8 +118,11 @@ const promptUser = () => {
             },
 
             ]).then(params => {
+              
               let queryString4 = `INSERT INTO role_table (title, salary, department_id) VALUES (?,?,?)`;
-              db.query(queryString4, params.role_name, params.role_salary, params.role_depid, (error, result) => {
+              const allOfIt = [params.role, params.role_salary, params.role_depid];
+              console.log(allOfIt);
+              db.query(queryString4, allOfIt, (error, result) => {
                 if(error) {
                   throw error;
                 }
@@ -136,8 +139,52 @@ const promptUser = () => {
               
             break;  
             //adding new condition 
+            case 'add an employee':
+              return inquirer
+            .prompt([
+            {
+              type: "input",
+              name: "first_name",
+              message: "Enter the first name? (Required)",
+            },
+            {
+              type: "input",
+              name: "last_name",
+              message: "Enter the last name? (Required)",
+            },
+            {
+              type: "input",
+              name: "role_id",
+              message: "Enter the new role id? (Required)",
+            },
+            {
+              type: "input",
+              name: "manager_id",
+              message: "Enter the manager id? (Required)",
+            },
 
-
+            ]).then(params => {
+              
+              let queryString4 = `INSERT INTO employees  (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)`;
+              const allOfIt = [params.first_name, params.last_name, params.role_id, params.manager_id ];
+              console.log(allOfIt);
+              db.query(queryString4, allOfIt, (error, result) => {
+                if(error) {
+                  throw error;
+                }
+                let queryString = "SELECT * from employees";
+                db.query(queryString, (error, result) => {
+                  if(error) {
+                    throw error;
+                  }
+                  console.table(result);
+                  promptUser();
+                });
+              });
+              });
+              
+            break;  
+            //adding update condition 
 
 
 
