@@ -4,6 +4,16 @@
 
 This is a command-line application to manage a company's employee database, using Node.js, Inquirer, and MySQL.
 
+Link to Screencastify video:
+https://watch.screencastify.com/v/yePyRAZfteuokjALANNw
+
+
+
+
+
+
+
+
 ## Acceptance criteria
 
 GIVEN a command-line application that accepts user input

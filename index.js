@@ -62,7 +62,7 @@ const promptUser = () => {
               throw error;
             }
             console.table(result);
-            console.log(result);
+            //console.log(result);
             promptUser();
           });
           break;
